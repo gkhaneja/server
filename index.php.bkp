@@ -1,0 +1,29 @@
+<?php
+echo "Wecome to SB";
+?>
+
+<?php
+include 'DataBase/mysql.php';
+$a= $_GET['user'];
+$lat = $_GET['lat'];
+$long = $_GET['long'];
+echo "$a";
+echo "\n";
+echo " Your Location is $lat and $long";
+$user="root";
+$pass="";
+$db="StrangerBuddy";
+$dbc = mysqli_connect('localhost',$user,$pass,$db) or die ('Error connecting to MYSQL server');
+
+echo "Connection to DataBase Successful";
+$query = "INSERT into userupdates VALUES ('$a','$lat','$long')";
+
+#$result = mysqli_query($dbc,$query) or die ('Error executing query');
+
+mysqli_close($dbc);
+$mysql = new Mysql();
+$mysql->dbConnect();
+$mysql->freeRun($query);
+$mysql->dbDisconnect();
+
+?>
