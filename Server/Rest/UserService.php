@@ -1,6 +1,7 @@
 <?php
-include 'RestService.php';
-require_once("autoload.php");
+$path_parts = pathinfo($_SERVER['PHP_SELF']);
+$dir =  $path_parts['dirname'] . "";
+require_once($dir . "/../autoload.php");
 
 class UserService extends RestService
 {

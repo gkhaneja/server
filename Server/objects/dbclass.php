@@ -1,4 +1,7 @@
 <?php
+$path_parts = pathinfo($_SERVER['PHP_SELF']);
+$dir =  $path_parts['dirname'] . "";
+require_once($dir . "/../autoload.php");
 
 class dbclass extends mysqli {
 
