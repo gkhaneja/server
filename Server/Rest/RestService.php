@@ -3,15 +3,21 @@ $path_parts = pathinfo($_SERVER['PHP_SELF']);
 $dir =  $path_parts['dirname'] . "";
 require_once($dir . "/../autoload.php");
 
+foreach ($_REQUEST as $key=>$val) {
+	${$key}=$val;
+}
+
 class RestService {
 
   private $supportedMethods;
+  public $name;
 
   public function __construct($supportedMethods) {
     $this->supportedMethods = $supportedMethods;
+    $this->name = 'Rest';
   }
 
-  public function handleRawRequest($_SERVER, $_GET, $_POST) {
+  public function handleRawRequest() {
     $url = $this->getFullUrl($_SERVER);
     $method = $_SERVER['REQUEST_METHOD'];
     switch ($method) {
@@ -31,7 +37,7 @@ class RestService {
     $this->handleRequest($url, $method, $arguments, $accept);
   }
 
-  protected function getFullUrl($_SERVER) {
+  protected function getFullUrl() {
     $protocol = $_SERVER['HTTPS'] == 'on' ? 'https' : 'http';
     $location = $_SERVER['REQUEST_URI'];
     if ($_SERVER['QUERY_STRING']) {

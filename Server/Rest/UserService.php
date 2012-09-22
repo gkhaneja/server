@@ -5,7 +5,11 @@ require_once($dir . "/../autoload.php");
 
 class UserService extends RestService
 {
-
+public function __construct()
+{
+	$this->name = "User";
+}
+	
 public function performGet($user_id)
 {
 	$user = new user();
